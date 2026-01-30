@@ -1,9 +1,19 @@
 import dokter from "../models/DokterModels.js";
 import fs from "fs";
+import { Op } from "sequelize";
 
 export const getDokter = async (req, res) => {
+  const {bagian} = req.query
   try {
-    const response = await dokter.findAll();
+    const condition = bagian ? {
+      bagian :{
+        [Op.like] : `%${bagian}%`
+      }
+    } : {}
+
+    const response = await dokter.findAll({
+      where : condition
+    });
     if (response.length == 0)
       return res.status(400).json({ msg: "data masih kosong" });
     res.status(200).json(response);

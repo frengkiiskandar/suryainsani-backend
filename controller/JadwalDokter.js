@@ -13,6 +13,26 @@ export const getJadwalDokter = async (req, res) => {
   }
 };
 
+export const getJadwalDokterByIdDokter = async (req, res) => {
+  const { dokterId } = req.params;
+  try {
+    const response = await jadwaldokter.findAll({
+      where: {
+        dokter_id: dokterId,
+      },
+      include: {
+        model: dokter,
+        attributes: ["nama", "image", "kontak", "email","bagian"],
+      },
+    });
+    if (!response || response.length === 0) return res.status(404).json({ msg: "jadwal dokter tidak ditemukan" });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "terjadi kesalahan pada server" });
+  }
+};
+
 export const createJadwalDokter = async (req, res) => {
   const { hari, jam_mulai, jam_selesai } = req.body;
   try {
