@@ -43,6 +43,14 @@ export const createJadwalDokter = async (req, res) => {
     });
     if (!dataDokter)
       return res.status(404).json({ msg: "dokter tidak ditemukan " });
+    
+    const cekHari = await jadwaldokter.findOne({
+      where : {
+        dokter_id:dataDokter.id,
+        hari : hari
+      }
+    })
+    if(cekHari)  return res.status(400).json({msg: `hari ${hari} udah dibuat brow...  cek dulu !`})
 
     const createdJadwalDokter = await jadwaldokter.create(
       {
@@ -50,11 +58,6 @@ export const createJadwalDokter = async (req, res) => {
         jam_mulai,
         jam_selesai,
         dokter_id: dataDokter.id,
-      },
-      {
-        where: {
-          id: dataDokter.id,
-        },
       },
     );
     res
@@ -72,6 +75,7 @@ export const updateJadwalDokter = async (req, res) => {
     const dataJadwal = await jadwaldokter.findByPk(req.params.id);
     if (!dataJadwal)
       return res.status(404).json({ msg: "data jadwal tidak ditemukan" });
+
 
     dataJadwal.hari = hari ?? dataJadwal.hari;
     dataJadwal.jam_mulai = jam_mulai ?? dataJadwal.jam_mulai;
