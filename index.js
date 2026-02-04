@@ -9,6 +9,8 @@ import artikel from "./models/ArtikelModels.js";
 import konten from "./models/KontenModels.js";
 import dokter from "./models/DokterModels.js";
 import jadwaldokter from "./models/JadwalDokterModels.js";
+import iklan from "./models/IklanModels.js";
+import pesan from "./models/PesanModels.js";
 
 // router
 import router from "./route/index.js";
@@ -16,6 +18,8 @@ import galeriRouter from "./route/galeriRoute.js";
 import artikelRouter from "./route/artikelRoute.js";
 import dokterRouter from "./route/dokterRoute.js";
 import jadwalDokterRouter from "./route/jadwalDokterRoute.js";
+import iklanRouter from "./route/iklanRoute.js";
+import pesanRouter from "./route/pesanRoute.js";
 
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -51,6 +55,8 @@ app.use(artikelRouter);
 app.use(dokterRouter);
 app.use(jadwalDokterRouter);
 app.use(kontenRouter);
+app.use(iklanRouter)
+app.use(pesanRouter)
 
 // jika errror mimetype atau ukuran file
 app.use((err, req, res, next) => {
