@@ -1,9 +1,11 @@
 import express from "express";
-import { createPesan, getPesan } from "../controller/Pesan.js";
+import { createPesan, deletePesan, getPesan, updatePesanByTelp } from "../controller/Pesan.js";
 const pesanRouter = express.Router();
 
 pesanRouter.get('/pesan',getPesan)
 pesanRouter.post('/pesan',createPesan)
+pesanRouter.patch('/pesan',updatePesanByTelp)
+pesanRouter.delete('/pesan/:id',deletePesan)
 
 
 export default pesanRouter

@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
 import db from "./config/database.js";
 
 // == import model yang akan di sync
@@ -24,7 +25,6 @@ import pesanRouter from "./route/pesanRoute.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-dotenv.config();
 
 import multer from "multer";
 import kontenRouter from "./route/kontenRoute.js";

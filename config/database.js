@@ -1,8 +1,14 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize('surya_insani','root', '',{
-    host : 'localhost',
-    dialect : "mysql",
-})
+const db = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    host: "localhost",
+    dialect: "mysql",
+    logging : false
+  },
+);
 
-export default db
+export default db;
