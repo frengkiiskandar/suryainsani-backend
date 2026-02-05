@@ -15,7 +15,7 @@ export const getDokter = async (req, res) => {
       where : condition
     });
     if (response.length == 0)
-      return res.status(400).json({ msg: "data masih kosong" });
+      return res.status(200).json({ msg: "data masih kosong" });
     res.status(200).json(response);
   } catch (error) {
     console.log(error);

@@ -40,7 +40,7 @@ try {
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "http://76.13.193.69:3000",
   }),
 );
 
@@ -76,7 +76,7 @@ app.use((err, req, res, next) => {
 
   next();
 });
-
-app.listen(5000, () => {
+const PORT = process.env.PORT
+app.listen(PORT, () => {
   console.log(`server running at port ${process.env.PORT} ...`);
 });

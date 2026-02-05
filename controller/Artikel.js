@@ -33,7 +33,6 @@ export const getArtikelById = async (req, res) => {
     });
     if (!data) return res.status(404).json({ msg: "data tidak ditemukan" });
     res.status(200).json(data);
-    // console.log("PARAM ID:", req.params.id, typeof req.params.id);
   } catch (error) {
     console.log(error);
   }

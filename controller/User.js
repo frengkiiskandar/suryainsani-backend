@@ -54,17 +54,13 @@ export const Login = async (req, res) => {
         },
       },
     );
-    // res.cookie("accessToken", accessToken, {
-    //   httpOnly: true,
-    //   maxAge: 15 * 60 * 1000,
-    //   sameSite: 'lax'
-    // });
+
     res.cookie("token", accessToken, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
       sameSite: "lax",
       // === aktifkan ketika sudah di hosting dan menggunakan https
-      secure: false,
+      // secure: false,
     });
     res.json({ accessToken });
   } catch (error) {
