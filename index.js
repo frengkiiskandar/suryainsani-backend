@@ -39,8 +39,9 @@ try {
 }
 app.use(
   cors({
+    // origin: "http://76.13.193.69:3000",
+    origin: "http://localhost:3000",
     credentials: true,
-    origin: "http://76.13.193.69:3000",
   }),
 );
 

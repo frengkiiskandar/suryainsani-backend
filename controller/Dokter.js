@@ -14,9 +14,7 @@ export const getDokter = async (req, res) => {
     const response = await dokter.findAll({
       where : condition
     });
-    if (response.length == 0)
-      return res.status(200).json({ msg: "data masih kosong" });
-    res.status(200).json(response);
+    if(!response) return res.status(404).json({msg:"data dokter kosong"})
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "terjadi kesalahan pada server" });

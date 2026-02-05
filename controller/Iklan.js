@@ -2,10 +2,15 @@ import iklan from "../models/IklanModels.js";
 import fs from "fs";
 
 export const getIklan = async (req, res) => {
-  const response = await iklan.findAll();
-  if (!response || response.length === 0)
-    return res.status(404).json({ msg: "data masih kosong" });
-  res.status(200).json(response);
+  try {
+    const response = await iklan.findAll();
+    if (!response || response.length === 0)
+      return res.status(404).json({ msg: "data masih kosong" });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ msg: "terjadi kesalahan pada server" });
+  }
 };
 
 export const getIklanById = async (req, res) => {
@@ -32,7 +37,7 @@ export const getIklanIsActive = async (req, res) => {
       },
     });
     if (!response) return res.json(404).json({ msg: "tidak ada iklan aktif" });
-    res.status(200).json( response );
+    res.status(200).json(response);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ msg: "terjadi kesalahan pada server" });
