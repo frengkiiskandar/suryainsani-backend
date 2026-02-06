@@ -37,13 +37,19 @@ try {
 } catch (error) {
   console.log(error);
 }
-app.use(
-  cors({
-    // origin: "http://76.13.193.69:3000",
-    origin: "http://localhost:3000",
-    credentials: true,
-  }),
-);
+
+const allowedOrigins = ["http://localhost:3000", "https://suryainsani-fronted.vercel.app"];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // kalau request dari Postman atau curl
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+}));
 
 app.use("/uploads", express.static("uploads"));
 app.use(cookieParser());
