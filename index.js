@@ -38,7 +38,7 @@ try {
   console.log(error);
 }
 
-const allowedOrigins = ["http://localhost:3000", "https://suryainsani-fronted.vercel.app"];
+const allowedOrigins = ["http://localhost:3000", "https://suryainsani-frontend.vercel.app"];
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -48,7 +48,8 @@ app.use(cors({
     } else {
       callback(new Error("Not allowed by CORS"));
     }
-  }
+  },
+  credentials :'true'
 }));
 
 app.use("/uploads", express.static("uploads"));
