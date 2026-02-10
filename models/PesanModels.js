@@ -30,7 +30,7 @@ const pesan = db.define('pesan',{
         allowNull:true,
     },
     pesan :{
-        type :DataTypes.STRING
+        type :DataTypes.TEXT('long')
     }
 
 },{
