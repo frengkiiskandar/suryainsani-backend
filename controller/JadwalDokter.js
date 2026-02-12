@@ -15,11 +15,11 @@ export const getJadwalDokter = async (req, res) => {
 
 // updata yang belm di push
 export const getJadwalById = async (req, res) => {
-  const { id } = req.params;
+  const { jadwalId } = req.params;
   try {
     const findJadwal = await jadwaldokter.findOne({
       where: {
-        id: id,
+        id: jadwalId,
       },
     });
     if (!findJadwal)

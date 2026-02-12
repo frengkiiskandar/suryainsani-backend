@@ -3,18 +3,21 @@ import fs from "fs";
 import { Op } from "sequelize";
 
 export const getDokter = async (req, res) => {
-  const {bagian} = req.query
+  const { bagian } = req.query;
   try {
-    const condition = bagian ? {
-      bagian :{
-        [Op.like] : `%${bagian}%`
-      }
-    } : {}
+    const condition = bagian
+      ? {
+          bagian: {
+            [Op.like]: `%${bagian}%`,
+          },
+        }
+      : {};
 
     const response = await dokter.findAll({
-      where : condition
+      where: condition,
     });
-    if(!response) return res.status(404).json({msg:"data dokter kosong"})
+    if (!response) return res.status(404).json({ msg: "data dokter kosong" });
+    res.status(200).json(response);
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "terjadi kesalahan pada server" });
@@ -111,7 +114,7 @@ export const deleteDokter = async (req, res) => {
     if (!response)
       return res.status(404).json({ msg: "dokter tidak ditemukan" });
 
-      fs.unlinkSync(response.image);
+    fs.unlinkSync(response.image);
 
     const deletedDokter = await dokter.destroy({
       where: {

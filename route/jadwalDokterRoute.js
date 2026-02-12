@@ -4,9 +4,9 @@ import { verifyToken } from '../middleware/verifyToken.js'
 
 const jadwalDokterRouter = express.Router()
 
-jadwalDokterRouter.get('/jadwalDokter', getJadwalDokter)
+jadwalDokterRouter.get('/jadwal/:jadwalId', getJadwalById)
+jadwalDokterRouter.get('/jadwal', getJadwalDokter)
 jadwalDokterRouter.get('/dokter/:dokterId/jadwal', getJadwalDokterByIdDokter)
-jadwalDokterRouter.get('/jadwalDokter/:id', getJadwalById)
 jadwalDokterRouter.post('/jadwalDokter/:id/jadwalDokter',verifyToken ,createJadwalDokter)
 jadwalDokterRouter.patch('/jadwalDokter/:id',verifyToken, updateJadwalDokter)
 jadwalDokterRouter.delete('/jadwalDokter/:id',verifyToken, deleteJadwalDokter)

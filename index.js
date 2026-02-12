@@ -25,7 +25,6 @@ import pesanRouter from "./route/pesanRoute.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-
 import multer from "multer";
 import kontenRouter from "./route/kontenRoute.js";
 
@@ -38,19 +37,24 @@ try {
   console.log(error);
 }
 
-const allowedOrigins = ["http://localhost:3000", "https://suryainsani-frontend.vercel.app"];
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://suryainsani-frontend.vercel.app",
+];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // kalau request dari Postman atau curl
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials :'true'
-}));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // kalau request dari Postman atau curl
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  }),
+);
 
 app.use("/uploads", express.static("uploads"));
 app.use(cookieParser());
@@ -63,8 +67,8 @@ app.use(artikelRouter);
 app.use(dokterRouter);
 app.use(jadwalDokterRouter);
 app.use(kontenRouter);
-app.use(iklanRouter)
-app.use(pesanRouter)
+app.use(iklanRouter);
+app.use(pesanRouter);
 
 // jika errror mimetype atau ukuran file
 app.use((err, req, res, next) => {
@@ -84,7 +88,7 @@ app.use((err, req, res, next) => {
 
   next();
 });
-const PORT = process.env.PORT
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`server running at port ${process.env.PORT} ...`);
 });

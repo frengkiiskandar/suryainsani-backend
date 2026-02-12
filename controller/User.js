@@ -190,14 +190,15 @@ export const DeleteUser = async (req, res) => {
 export const Me = async (req, res) => {
   try {
     const token = req.cookies.token;
-    if (token === null) return res.status(404).json({ msg: "user tidak ditemukan" });
-     const data = await users.findOne({
+    if (token === null)
+      return res.status(404).json({ msg: "user tidak ditemukan" });
+    const data = await users.findOne({
       where: {
         token: token,
       },
-      attributes : ["name", "email"]
+      attributes: ["name", "email"],
     });
-    return res.status(200).json(data)
+    return res.status(200).json(data);
   } catch (error) {
     console.log(error);
   }
