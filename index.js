@@ -40,6 +40,8 @@ try {
 const allowedOrigins = [
   "http://localhost:3000",
   "https://suryainsani-frontend.vercel.app",
+  "https://www.rssuryainsani.com",
+  "https://rssuryainsani.com",
 ];
 
 app.use(
