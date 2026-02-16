@@ -59,6 +59,7 @@ export const Login = async (req, res) => {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
       sameSite: "none",
+      domain: ".rssuryainsani.com",
       // === aktifkan ketika sudah di hosting dan menggunakan https
       secure: true,
     });
