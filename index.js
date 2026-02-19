@@ -12,6 +12,7 @@ import dokter from "./models/DokterModels.js";
 import jadwaldokter from "./models/JadwalDokterModels.js";
 import iklan from "./models/IklanModels.js";
 import pesan from "./models/PesanModels.js";
+import mutu from "./models/mutuModels.js";
 
 // router
 import router from "./route/index.js";
@@ -21,6 +22,7 @@ import dokterRouter from "./route/dokterRoute.js";
 import jadwalDokterRouter from "./route/jadwalDokterRoute.js";
 import iklanRouter from "./route/iklanRoute.js";
 import pesanRouter from "./route/pesanRoute.js";
+import mutuRouter from "./route/mutuRoute.js";
 
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -32,7 +34,7 @@ const app = express();
 
 try {
   await db.authenticate();
-  // await db.sync({alter : true})
+  await db.sync({alter : true})
 } catch (error) {
   console.log(error);
 }
@@ -71,6 +73,7 @@ app.use(jadwalDokterRouter);
 app.use(kontenRouter);
 app.use(iklanRouter);
 app.use(pesanRouter);
+app.use(mutuRouter);
 
 // jika errror mimetype atau ukuran file
 app.use((err, req, res, next) => {
