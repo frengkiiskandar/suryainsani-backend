@@ -3,7 +3,9 @@ import fs from "fs";
 
 export const getMutu = async (req, res) => {
   try {
-    const response = await mutu.findAll();
+    const response = await mutu.findAll({
+      order: [["updatedAt", "DESC"]],
+    });
     if (!response) return res.json(404).json({ msg: "data tidak ditemukan" });
     res.status(200).json(response);
   } catch (error) {
